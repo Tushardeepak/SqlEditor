@@ -9,6 +9,7 @@ import TableContainer from "../TableContainer";
 import "./mainContainer.css";
 
 function MainContainer({ uid }) {
+  console.log("uid: ", uid);
   const [queryArray, setQueryArray] = useState([
     {
       title: "Query",

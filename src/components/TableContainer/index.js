@@ -60,17 +60,17 @@ function TableContainer({ data, currentQuery, run, applyFilter, filters }) {
                   .filter((row) => {
                     if (applyFilter) {
                       let text = null;
-                      if (typeof row[filters.head] == "number")
+                      if (typeof row[filters.head] === "number")
                         if (row[filters.head] % 1 === 0)
                           text = parseInt(filters.text);
                         else text = parseFloat(filters.text);
-                      if (filters.op == "=") {
-                        if (row[filters.head] == text) return row;
-                      } else if (filters.op == "!=") {
-                        if (row[filters.head] != text) return row;
-                      } else if (filters.op == "<") {
+                      if (filters.op === "=") {
+                        if (row[filters.head] === text) return row;
+                      } else if (filters.op === "!=") {
+                        if (row[filters.head] !== text) return row;
+                      } else if (filters.op === "<") {
                         if (row[filters.head] < text) return row;
-                      } else if (filters.op == ">") {
+                      } else if (filters.op === ">") {
                         if (row[filters.head] > text) return row;
                       }
                     } else {
