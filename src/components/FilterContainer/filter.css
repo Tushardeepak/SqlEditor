@@ -1,0 +1,36 @@
+.filterContainer {
+  width: 100%;
+  padding: 1rem 2rem;
+  border: 2px solid #000;
+  height: 40vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-top: 1rem;
+}
+
+.filterHeader {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.filterSelect{
+  margin-top: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.filterInput{
+  margin-top: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+.filterSubmit{
+  padding: 0.5rem;
+  color: #fff;
+  background-color: #000;
+  margin-top: 1rem;
+  text-align:center;
+  vertical-align: middle;
+  cursor: pointer;
+}

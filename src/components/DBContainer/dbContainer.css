@@ -1,0 +1,34 @@
+.dbContainer {
+  width: 100%;
+  padding: 1rem 2rem;
+  border: 2px solid #000;
+  height: 40vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.dbContainerHeader {
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+.db {
+  padding: 1rem;
+  color: #000;
+  border: 2px solid #000;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+.dbContainerBox{
+  margin-top: 2rem;
+}
+.dbSelected{
+  padding: 1rem;
+  color: #fff;
+  background-color: #000;
+  border: 2px solid #000;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}

@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { v4 as uuidV4 } from "uuid";
+import "./App.css";
+import MainContainer from "./components/MainContainer";
 
 function App() {
+  const navigate = useNavigate();
+  const [uid, setUid] = useState(uuidV4().toString().replace(/-/g, ""));
+  useEffect(() => {
+    navigate(`/${uid}`);
+  }, [uid]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<MainContainer uid={uid} />} />
+        <Route path="/:queryID" element={<MainContainer uid={uid} />} />
+      </Routes>
     </div>
   );
 }

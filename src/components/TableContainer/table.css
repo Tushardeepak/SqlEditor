@@ -1,0 +1,78 @@
+.tableContainer {
+  width: 100%;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  margin-bottom: 10rem;
+}
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.tableHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.269);
+}
+.tableHeadData {
+  width: 30%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  text-align: left;
+  padding: 0.5rem;
+  cursor: default;
+}
+.tableHeadData::-webkit-scrollbar {
+  display: none;
+}
+.tableHeadData {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.tableAbbr {
+  text-decoration: none;
+}
+
+.tableRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tableRow:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.tableRow:hover{
+  background-color: rgba(0, 0, 0, 0.231)
+}
+.tableRowData {
+  width: 30%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  padding: 0.5rem;
+  height: 2.5rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  cursor: default;
+}
+
+
+.tableRowData::-webkit-scrollbar {
+  display: none;
+}
+.tableRowData {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.info{
+  font-size:2rem;
+  padding: 2rem;
+  font-weight: 700;
+  color: rgb(84, 83, 83);
+}

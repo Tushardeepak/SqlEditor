@@ -1,0 +1,51 @@
+.queryTabContainer {
+  width: 70rem;
+  height: 4rem;
+  border: 2px solid #000;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  margin-left:1rem;
+}
+.queryTabContainer::-webkit-scrollbar {
+  display: none;
+}
+.queryTabContainer {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.queryTabBox {
+  height: 3rem;
+  width: 7rem;
+  min-width: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  border: 2px solid #000;
+  margin: 0.5rem 0;
+  margin-left: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.queryTabBoxSelected {
+  cursor: pointer;
+  height: 3rem;
+  width: 7rem;
+  min-width: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  border: 2px solid #000;
+  color: #fff;
+  margin: 0.5rem 0;
+  margin-left: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
