@@ -42,6 +42,10 @@ function MainContainer({ uid }) {
   };
 
   useEffect(() => {
+    navigate(`/${uid}`);
+  }, [uid]);
+  
+  useEffect(() => {
     setRun(false);
   }, [currentDatabase.name, queryArray.length]);
 
