@@ -5,6 +5,7 @@
   height: 40vh;
   overflow-x: hidden;
   overflow-y: scroll;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .dbContainerHeader {
   font-size: 1rem;
@@ -19,6 +20,8 @@
   margin-bottom: 1rem;
   cursor: pointer;
   font-weight: 600;
+  font-size: 1rem;
+  text-align:center;
 }
 .dbContainerBox{
   margin-top: 2rem;
@@ -31,4 +34,7 @@
   margin-bottom: 1rem;
   cursor: pointer;
   font-weight: 600;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align:center;
 }
