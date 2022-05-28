@@ -17,10 +17,10 @@ It's a react based application with following features:
   
  ## Site Stats:
   #### 1) Web.dev -> [link](https://web.dev/measure/?url=https%3A%2F%2Fsqleditor-tushar.netlify.app%2F)
-  #####   Load Time: 1.30 s
+  #####   Load Time: 1.1 s
   
-  #### 2) Pingdom Website Speed Test -> [link](https://tools.pingdom.com/#6041725d1dc00000)
-  #####   Load Time: 1.30 s
+  #### 2) Pingdom Website Speed Test -> [link](https://tools.pingdom.com/#604259120dc00000)
+  #####   Load Time: 1.07 s
  
 ## Performance Update:
   #### 1) Used Infinite Scroll for displaying large table data.
