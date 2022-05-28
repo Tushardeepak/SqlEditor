@@ -5,8 +5,9 @@ It's a react based application with following features:
   ##### 2) Two initial database is provided for playaround.
   ##### 3) A SQL query editor.
   ##### 4) You can add multiple SQL tabs with different queries.
-  ##### 5) Can apply multiple filter options to the output table.
-  ##### 6) Output table is optimized for large dataset also.
+  ##### 5) Can apply filter to the output table though UI.
+  ##### 6) Each Query tab has its own table and filters.
+  ##### 7) Output table is optimized for large dataset also.
   
  ## Tech used:
   ##### 1) React JavaScript Framework -> [link](https://reactjs.org/)
