@@ -76,7 +76,6 @@ function DBContainer({
         break;
       }
     }
-    console.log("arrDataBase", arr);
     setQueryArray([...arr]);
   };
 

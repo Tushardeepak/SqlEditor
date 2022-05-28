@@ -15,7 +15,6 @@ function FilterContainer({
     setFilters(currentQuery.filters);
   }, [currentQuery.filters]);
   const handleApplyFilter = () => {
-    console.log("main", queryArray);
     if (currentQuery?.applyFilter) {
       setCurrentQuery({
         ...currentQuery,

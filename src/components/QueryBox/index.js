@@ -11,7 +11,6 @@ function QueryBox({
   const params = useParams();
   useEffect(() => {
     const _query = queryArray.filter((q) => q.id === params.queryID);
-    console.log("current", _query[0]);
     setCurrentQuery(_query[0] ?? {});
   }, [params.queryID]);
 
@@ -38,7 +37,6 @@ function QueryBox({
         break;
       }
     }
-    console.log("arr", arr);
     setQueryArray([...arr]);
   };
   const optimizedFn = useCallback(debounce(handleChange), [
