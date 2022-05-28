@@ -9,12 +9,19 @@ import TableContainer from "../TableContainer";
 import "./mainContainer.css";
 
 function MainContainer({ uid }) {
-  console.log("uid: ", uid);
   const [queryArray, setQueryArray] = useState([
     {
       title: "Query",
       id: uid,
       query: "",
+      run: false,
+      currentDatabase: {
+        header: [],
+        rows: [],
+        name: "",
+      },
+      filters: {},
+      applyFilter: false,
     },
   ]);
   const [database, setDatabase] = useState([
@@ -24,11 +31,7 @@ function MainContainer({ uid }) {
       name: "",
     },
   ]);
-  const [currentDatabase, setCurrentDatabase] = useState({});
   const [currentQuery, setCurrentQuery] = useState({});
-  const [applyFilter, setApplyFilter] = useState(false);
-  const [filters, setFilters] = useState({});
-  const [run, setRun] = useState(false);
   const navigate = useNavigate();
 
   const addQuery = () => {
@@ -36,18 +39,41 @@ function MainContainer({ uid }) {
       title: "Query",
       id: uuidV4().toString().replace(/-/g, ""),
       query: "",
+      run: false,
+      currentDatabase: {
+        header: [],
+        rows: [],
+        name: "",
+      },
+      filters: {},
+      applyFilter: false,
     };
     navigate(`/${temp.id}`);
     setQueryArray([...queryArray, temp]);
   };
 
+  const handleRunChange = () => {
+    setCurrentQuery({ ...currentQuery, run: true });
+    let arr = [...queryArray];
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id === currentQuery.id) {
+        arr[i] = {
+          ...arr[i],
+          run: true,
+        };
+        break;
+      }
+    }
+    setQueryArray([...arr]);
+  };
+
   useEffect(() => {
     navigate(`/${uid}`);
   }, [uid]);
-  
-  useEffect(() => {
-    setRun(false);
-  }, [currentDatabase.name, queryArray.length]);
+
+  // useEffect(() => {
+  //   setRun(false);
+  // }, [queryArray.length]);
 
   return (
     <div className="mainContainer">
@@ -55,18 +81,21 @@ function MainContainer({ uid }) {
         <DBContainer
           setDatabase={setDatabase}
           database={database}
-          setCurrentDatabase={setCurrentDatabase}
-          currentDatabase={currentDatabase}
+          setCurrentQuery={setCurrentQuery}
+          currentQuery={currentQuery}
+          setQueryArray={setQueryArray}
+          queryArray={queryArray}
         />
-        {run && currentDatabase.name !== undefined && (
-          <FilterContainer
-            currentDatabase={currentDatabase}
-            setFilters={setFilters}
-            filters={filters}
-            setApplyFilter={setApplyFilter}
-            applyFilter={applyFilter}
-          />
-        )}
+        {!currentQuery.run ||
+          (currentQuery.currentDatabase.name !== "" && (
+            <FilterContainer
+              currentDatabase={currentQuery.currentDatabase}
+              setQueryArray={setQueryArray}
+              queryArray={queryArray}
+              setCurrentQuery={setCurrentQuery}
+              currentQuery={currentQuery}
+            />
+          ))}
       </div>
       <div className="mainContainerQueryBox">
         <div className="mainContainerTabBox">
@@ -77,7 +106,7 @@ function MainContainer({ uid }) {
           <div className="queryTabAddBtn" onClick={() => addQuery()}>
             <p className="queryTabPlus">+</p>
           </div>
-          <div className="queryTabRunBtn" onClick={() => setRun(true)}>
+          <div className="queryTabRunBtn" onClick={() => handleRunChange()}>
             <p className="queryTabRun">RUN</p>
           </div>
         </div>
@@ -88,11 +117,11 @@ function MainContainer({ uid }) {
           setCurrentQuery={setCurrentQuery}
         />
         <TableContainer
-          data={currentDatabase}
-          run={run}
+          data={currentQuery.currentDatabase}
+          run={currentQuery.run}
           currentQuery={currentQuery}
-          applyFilter={applyFilter}
-          filters={filters}
+          applyFilter={currentQuery.applyFilter}
+          filters={currentQuery.filters}
         />
       </div>
     </div>

@@ -1,22 +1,66 @@
-import React, { useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import "./filter.css";
 
 function FilterContainer({
   currentDatabase,
-  setFilters,
-  filters,
-  setApplyFilter,
-  applyFilter,
+  setCurrentQuery,
+  currentQuery,
+  queryArray,
+  setQueryArray,
 }) {
-  // useEffect(() => {
-  //   setApplyFilter(false);
-  // }, [filters?.head, filters?.op, filters?.text]);
   const op = ["=", "!=", "<", ">"];
+  const [filters, setFilters] = useState({});
+
+  useEffect(() => {
+    setFilters(currentQuery.filters);
+  }, [currentQuery.filters]);
+  const handleApplyFilter = () => {
+    console.log("main", queryArray);
+    if (currentQuery?.applyFilter) {
+      setCurrentQuery({
+        ...currentQuery,
+        applyFilter: false,
+        filters: {},
+      });
+      let arr = [...queryArray];
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].id === currentQuery.id) {
+          arr[i] = {
+            ...arr[i],
+            applyFilter: false,
+            filters: {},
+          };
+          break;
+        }
+      }
+      setQueryArray([...arr]);
+    } else {
+      setCurrentQuery({
+        ...currentQuery,
+        filters: filters,
+        applyFilter: true,
+      });
+      let arr = [...queryArray];
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].id === currentQuery.id) {
+          arr[i] = {
+            ...arr[i],
+            filters: filters,
+            applyFilter: true,
+          };
+          break;
+        }
+      }
+      setQueryArray([...arr]);
+    }
+  };
   return (
     <div className="filterContainer">
       <p className="filterHeader">Filter</p>
       <select
         className="filterSelect"
+        disabled={currentQuery.applyFilter}
+        value={filters.head ?? ""}
         onChange={(e) =>
           setFilters({
             ...filters,
@@ -33,6 +77,7 @@ function FilterContainer({
         ))}
       </select>
       <select
+        disabled={currentQuery.applyFilter}
         value={filters.op ?? ""}
         className="filterSelect"
         onChange={(e) =>
@@ -54,6 +99,7 @@ function FilterContainer({
         placeholder="Enter text..."
         type="text"
         className="filterInput"
+        disabled={currentQuery.applyFilter}
         onChange={(e) =>
           setFilters({
             ...filters,
@@ -66,11 +112,8 @@ function FilterContainer({
         (filters.head == undefined ? (
           ""
         ) : (
-          <p
-            className="filterSubmit"
-            onClick={() => setApplyFilter(!applyFilter)}
-          >
-            {applyFilter ? "Remove" : "Apply"}
+          <p className="filterSubmit" onClick={() => handleApplyFilter()}>
+            {currentQuery.applyFilter ? "Remove" : "Apply"}
           </p>
         ))}
     </div>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./queryBox.css";
 
@@ -11,6 +11,7 @@ function QueryBox({
   const params = useParams();
   useEffect(() => {
     const _query = queryArray.filter((q) => q.id === params.queryID);
+    console.log("current", _query[0]);
     setCurrentQuery(_query[0] ?? {});
   }, [params.queryID]);
 

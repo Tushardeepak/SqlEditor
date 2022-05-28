@@ -35,13 +35,13 @@ function TableContainer({ data, currentQuery, run, applyFilter, filters }) {
 
   return (
     <div className="tableContainer">
-      {data.name === undefined && currentQuery.query === "" ? (
+      {data?.name === undefined && currentQuery.query === "" ? (
         <p className="info">Welcome to Online SQL Editor</p>
-      ) : data.name !== undefined ? (
+      ) : data?.name !== "" ? (
         run ? (
           <table className="table">
             <th className="tableHead">
-              {data.header?.map((d, index) => (
+              {data?.header?.map((d, index) => (
                 <td key={index} className="tableHeadData">
                   <abbr className="tableAbbr" title={d}>
                     {d}
@@ -59,11 +59,7 @@ function TableContainer({ data, currentQuery, run, applyFilter, filters }) {
                 {rows
                   .filter((row) => {
                     if (applyFilter) {
-                      let text = null;
-                      if (typeof row[filters.head] === "number")
-                        if (row[filters.head] % 1 === 0)
-                          text = parseInt(filters.text);
-                        else text = parseFloat(filters.text);
+                      let text = filters.text;
                       if (filters.op === "=") {
                         if (row[filters.head] === text) return row;
                       } else if (filters.op === "!=") {

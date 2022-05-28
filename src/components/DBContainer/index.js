@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { header1, header2, rows1, rows2 } from "../../utils/databases";
 import "./dbContainer.css";
-import { header1, rows1, header2, rows2 } from "../../utils/databases";
 
 function DBContainer({
   database,
   setDatabase,
-  setCurrentDatabase,
-  currentDatabase,
+  setCurrentQuery,
+  currentQuery,
+  queryArray,
+  setQueryArray,
 }) {
   const fileReader = new FileReader();
 
@@ -22,7 +24,7 @@ function DBContainer({
       }, {});
       return obj;
     });
-    setCurrentDatabase({
+    handleChangeDatabase({
       name: fileName,
       header: csvHeader,
       rows: array,
@@ -46,6 +48,36 @@ function DBContainer({
       };
       fileReader.readAsText(file);
     }
+  };
+
+  const handleChangeDatabase = (data) => {
+    setCurrentQuery({
+      ...currentQuery,
+      run:false,
+      currentDatabase: {
+        header: data.header,
+        rows: data.rows,
+        name: data.name,
+      },
+    });
+
+    let arr = [...queryArray];
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id === currentQuery.id) {
+        arr[i] = {
+          ...arr[i],
+          run:false,
+          currentDatabase: {
+            header: data.header,
+            rows: data.rows,
+            name: data.name,
+          },
+        };
+        break;
+      }
+    }
+    console.log("arrDataBase", arr);
+    setQueryArray([...arr]);
   };
 
   useEffect(() => {
@@ -78,14 +110,12 @@ function DBContainer({
       <div className="dbContainerBox">
         {database?.map((data) => (
           <p
-            className={currentDatabase.name === data.name ? "dbSelected" : "db"}
-            onClick={() =>
-              setCurrentDatabase({
-                header: data.header,
-                rows: data.rows,
-                name: data.name,
-              })
+            className={
+              currentQuery.currentDatabase?.name === data.name
+                ? "dbSelected"
+                : "db"
             }
+            onClick={() => handleChangeDatabase(data)}
           >
             {data.name}
           </p>
